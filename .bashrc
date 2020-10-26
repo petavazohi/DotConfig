@@ -223,6 +223,8 @@ up(){
   cd $d
 }
 
+source .bashrc.local
+
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -262,3 +264,4 @@ alias gerp='grep'
 alias sl='ls'
 alias ks='ls'
 alias xs='cd'
+weather
