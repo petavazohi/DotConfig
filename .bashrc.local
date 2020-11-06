@@ -1,0 +1,19 @@
+module load utils/tmux/3.1
+
+__conda_setup="$('/shared/software/conda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/shared/software/conda/etc/profile.d/conda.sh" ]; then
+        . "/shared/software/conda/etc/profile.d/conda.sh"
+    else
+        export PATH="/shared/software/conda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+source /shared/software/conda/etc/profile.d/conda.sh
+conda activate py36
+alias pep8='autopep8 --in-place --aggressive --aggressive '
+#export PATH="/gpfs20/scratch/petavazohi/vasp.5.4.4/bin:$PATH"
+#export PATH="/gpfs20/scratch/petavazohi/vasp.5.4.4-Cconstant/bin:$PATH"

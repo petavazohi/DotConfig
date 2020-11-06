@@ -1,3 +1,4 @@
+
 ;; init.el --- Emacs configuration
 
 ;; Set OSX function key as Meta
@@ -7,16 +8,18 @@
 ;; --------------------------------------
 
 (require 'package)
-;; (add-to-list 'package-archives     
-;;             '("elpy" . "http://jorgenschaefer.github.io/packages/"))   
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+; (add-to-list 'package-archives     
+;              '("elpy" . "http://jorgenschaefer.github.io/packages/"))   
+;(add-to-list 'package-archives
+;             '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
 (add-to-list 'package-archives
        '("melpa" . "https://melpa.org/packages/") t)
 
-;; activate all packages
+
 (package-initialize)
+
+;; activate all packages
 
 ;; fetch the list of packages available 
 (unless package-archive-contents
@@ -26,8 +29,6 @@
 (defvar myPackages
   '(better-defaults
     material-theme
-    spacemacs-theme
-    dracula-theme
     exec-path-from-shell
     elpy
     pyenv-mode))
@@ -46,6 +47,7 @@
        "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
     (goto-char (point-max))
     (eval-print-last-sexp)))
+
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 (el-get 'sync)
@@ -68,20 +70,24 @@
 ;; Allow hash to be entered  
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
 
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(package-selected-packages
-;;    (quote
-;;     (pyenv-mode elpy exec-path-from-shell material-theme better-defaults))))
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(jedi dracula-theme yasnippet-snippets yasnippet-classic-snippets use-package spacemacs-theme pyenv-mode material-theme exec-path-from-shell elpy conda better-defaults)))
+ 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+
+
+
 
 (elpy-enable)
 
@@ -91,29 +97,30 @@
 (yas-global-mode 1)
 (add-hook 'yas-minor-mode-hook (lambda () (yas-activate-extra-mode 'fundamental-mode)))
 
-(setq python-shell-interpreter "python"
-      python-shell-interpreter-args "-i")
+;; (setq python-shell-interpreter "python"
+;;       python-shell-interpreter-args "-i")
 
-(defcustom python-autopep8-path (executable-find "autopep8")
-  "autopep8 executable path."
-  :group 'python
-  :type 'string)
 
-(defun python-autopep8 ()
-  "Automatically formats Python code to conform to the PEP 8 style guide.
-$ autopep8 --in-place --aggressive --aggressive <filename>"
-  (interactive)
-  (when (eq major-mode 'python-mode)
-    (shell-command 
-     (format "%s --in-place --aggressive %s" python-autopep8-path
-             (shell-quote-argument (buffer-file-name))))
-    (revert-buffer t t t)))
+;; (defcustom python-autopep8-path (executable-find "autopep8")
+;;   "autopep8 executable path."
+;;   :group 'python
+;;   :type 'string)
 
-;;(bind-key "C-c C-a" 'python-auto-format)
+;; (defun python-autopep8 ()
+;;   "Automatically formats Python code to conform to the PEP 8 style guide.
+;; $ autopep8 --in-place --aggressive --aggressive <filename>"
+;;   (interactive)
+;;   (when (eq major-mode 'python-mode)
+;;     (shell-command 
+;;      (format "%s --in-place --aggressive %s" python-autopep8-path
+;;              (shell-quote-argument (buffer-file-name))))
+;;     (revert-buffer t t t)))
 
-(eval-after-load 'python
-  '(if python-autopep8-path
-       (add-hook 'before-save-hook 'python-autopep8)))
+;; ;; (bind-key "C-c C-a" 'python-auto-format)
+
+;; (eval-after-load 'python
+;;   '(if python-autopep8-path
+;;        (add-hook 'before-save-hook 'python-autopep8)))
 
 ;; (setq python-shell-interpreter "ipython"
 ;;       python-shell-interpreter-args "-i --simple-prompt")
@@ -158,19 +165,7 @@ $ autopep8 --in-place --aggressive --aggressive <filename>"
 ;;                  "\n"))))
 
 ;;(setq yas-triggers-in-field t)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (dracula-theme yasnippet-snippets yasnippet-classic-snippets use-package spacemacs-theme pyenv-mode material-theme exec-path-from-shell elpy conda better-defaults))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+
 ;; remove creating backup files
 (setq make-backup-files nil)
