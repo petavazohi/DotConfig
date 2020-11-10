@@ -259,7 +259,8 @@ alias print_header='echo "#!/usr/bin/env python3"'
 alias wvussh='ssh petavazohi@ssh.wvu.edu'
 alias thorny='ssh petavazohi@tf.hpc.wvu.edu'
 alias spruce='ssh petavazohi@spruce.hpc.wvu.edu'
-alias  bridges="ssh ptvz@bridges.psc.xsede.org"
+alias bridges="ssh ptvz@bridges.psc.xsede.org"
+alias stampede2="ssh ptvz@stampede2.tacc.utexas.edu"
 
 # paths
 export PATH="$HOME/local/scripts:$PATH"
