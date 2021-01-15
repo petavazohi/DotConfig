@@ -207,6 +207,11 @@ extract () {
    fi
  }
 
+compress () {
+    tar cvzf "${1////-}".tar.gz $1
+    
+}
+
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
@@ -266,7 +271,7 @@ alias stampede2="ssh ptvz@stampede2.tacc.utexas.edu"
 export PATH="$HOME/local/scripts:$PATH"
 #export PATH="$HOME/local/scripts:$PATH"
 export PYTHONPATH=$HOME/local/PyChemia;
-export PYTHONPATH=$HOME/local/pyprocar;
+export PYTHONPATH="$HOME/local/pyprocar:$PYTHONPATH";
 
 # Typos
 alias cta='cat'
