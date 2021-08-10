@@ -1,19 +1,34 @@
 module load utils/tmux/3.1
 
-__conda_setup="$('/shared/software/conda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/shared/software/conda/etc/profile.d/conda.sh" ]; then
-        . "/shared/software/conda/etc/profile.d/conda.sh"
-    else
-        export PATH="/shared/software/conda/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-source /shared/software/conda/etc/profile.d/conda.sh
-conda activate py36
 alias pep8='autopep8 --in-place --aggressive --aggressive '
+
+
+
+# conda repos
+source /shared/software/conda/etc/profile.d/conda.sh
+
+idp37_opevcv=/scratch/petavazohi/idp37_opevcv
+load_opencv_python37 () {
+    conda activate $idp37_opevcv
+
+}
+
+load_intel_python27 () {
+    conda activate /scratch/petavazohi/idp27
+}
+load_intel_python37 () {
+    conda activate /scratch/petavazohi/idp
+}
+
+load_intel_phys37 () {
+    conda activate /scratch/petavazohi/idp_phys37
+}
+
+# MongoDB
+alias start_mongodb='mongod --dbpath /scratch/petavazohi/mongodb/data/db > /scratch/petavazohi/mongodb/logs/$(date +'%Y%m%d-')$(hostname).log &'
+alias stop_mongodb='mongod --dbpath /scratch/petavazohi/mongodb/data/db/ --shutdown'
+
+# alias python=$(conda info | grep  "active env location" | awk '{print $5}')/bin/python
+export PYTHONPATH="/users/petavazohi/local/ForensicFit:$PYTHONPATH"
 #export PATH="/gpfs20/scratch/petavazohi/vasp.5.4.4/bin:$PATH"
 #export PATH="/gpfs20/scratch/petavazohi/vasp.5.4.4-Cconstant/bin:$PATH"

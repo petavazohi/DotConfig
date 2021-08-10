@@ -207,6 +207,22 @@ extract () {
    fi
  }
 
+del () {
+    for i in $(find . -name $1); do
+	echo $i;
+	rm -rf $i;
+    done
+}
+
+
+grep_all () {
+    for i in $(find . -name $2); do 
+	echo $i;
+	grep $1 $i;
+    done
+}
+
+
 compress () {
     tar cvzf "${1////-}".tar.gz $1
     
@@ -215,7 +231,7 @@ compress () {
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
-ulimit -s unlimited
+
 
 
 # how many leveles go up cd ../../../
@@ -269,9 +285,9 @@ alias stampede2="ssh ptvz@stampede2.tacc.utexas.edu"
 
 # paths
 export PATH="$HOME/local/scripts:$PATH"
-#export PATH="$HOME/local/scripts:$PATH"
-export PYTHONPATH=$HOME/local/PyChemia;
+export PYTHONPATH="$HOME/local/PyChemia:$PYTHONPATH";
 export PYTHONPATH="$HOME/local/pyprocar:$PYTHONPATH";
+export PYTHONPATH="$HOME/local/scripts:$PYTHONPATH";
 
 # Typos
 alias cta='cat'
