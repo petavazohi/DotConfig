@@ -1,5 +1,4 @@
-
-;; ;; init.el --- Emacs configuration
+;x; ;; init.el --- Emacs configuration
 
 ;; ;; Set OSX function key as Meta
 
@@ -72,7 +71,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(conda web-server websocket)))
+ '(conda-anaconda-home "/opt/intel/oneapi/intelpython/latest/condabin/")
+ '(package-selected-packages (quote (web-server websocket))))
  
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -166,4 +166,5 @@
 ;; ;; remove creating backup files
 (setq make-backup-files nil)
 
+(load "~/.emacs.d/local")
 
