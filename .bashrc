@@ -295,9 +295,10 @@ alias gerp='grep'
 alias sl='ls'
 alias ks='ls'
 alias xs='cd'
+alias vf='cd'
 alias tial='tail'
 alias vo='vi'
 alias ci='vi'
 #weather
 
-
+alias pep8='autopep8 --in-place --aggressive --aggressive '
