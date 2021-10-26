@@ -224,7 +224,7 @@ grep_all () {
 
 
 compress () {
-    tar cvzf "${1////-}".tar.gz $1
+    tar cvzf "${1////}".tar.gz $1
     
 }
 
@@ -300,4 +300,4 @@ alias vo='vi'
 alias ci='vi'
 #weather
 
-
+source /shared/software/conda/etc/profile.d/conda.sh
