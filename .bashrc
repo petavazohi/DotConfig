@@ -224,7 +224,7 @@ grep_all () {
 
 
 compress () {
-    tar cvzf "${1////-}".tar.gz $1
+    tar cvzf "${1////}".tar.gz $1
     
 }
 
@@ -302,3 +302,4 @@ alias ci='vi'
 #weather
 
 alias pep8='autopep8 --in-place --aggressive --aggressive '
+
