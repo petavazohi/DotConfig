@@ -266,7 +266,7 @@ export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e
 
 alias q="qstat -u petavazohi"
 alias grep="grep --color=auto"
-alias qw='emacs'
+alias qw='emacs -nw'
 alias ed='emacs'
 alias c='clear'
 alias cls='clear;ls'
