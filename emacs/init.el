@@ -48,6 +48,7 @@
 (defvar myPackages
   '(better-defaults
     material-theme
+    dracula-theme
     exec-path-from-shell
     elpy
     flyspell
@@ -87,7 +88,7 @@
 
 ;; (load-theme 'material t)           ;; load material theme
 ;; (load-theme 'spacemacs-dark t)
-;; (load-theme 'dracula t)
+(load-theme 'dracula t)
 
 (global-linum-mode  t)              ;; enable line numbers globally
 (setq linum-format "%4d \u2502 ")  ;; format line number spacing
