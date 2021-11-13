@@ -53,6 +53,7 @@
     elpy
     flyspell
     flycheck
+    lsp-mode
     pyenv-mode
     web-mode
     markdown-mode
@@ -81,7 +82,6 @@
 (el-get 'sync)
 
 
-
 ;; Use shell's $PATH
 (exec-path-from-shell-copy-env "PATH")
 (setq inhibit-startup-message t)   ;; hide the startup message
@@ -92,12 +92,12 @@
 
 (global-linum-mode  t)              ;; enable line numbers globally
 (setq linum-format "%4d \u2502 ")  ;; format line number spacing
-;; Allow hash to be entered  
+;; Allow hash to be entered
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
 
 
 ;; saveplace remembers your location in a file when saving files
-(save-place-mode 1) 
+(save-place-mode 1)
 
 ;; show matching paranthesis
 (show-paren-mode 1)
@@ -131,7 +131,7 @@
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 
 ;; flycheck-mode syntax check
-(add-hook 'after-init-hook 'global-flycheck-mode)
+;; (add-hook 'after-init-hook 'global-flycheck-mode)
 
 
 ;; keybindings
@@ -145,7 +145,7 @@
 ;; move from half space buffers using shift and arrow keys
 ;; (windmove-default-keybindings)
 
-;; make mode 
+;; make mode
 (add-to-list 'auto-mode-alist '("\\makefile.*\\'" . makefile-mode))
 
 (load "~/.emacs.d/local")
@@ -153,3 +153,16 @@
 (load "~/.emacs.d/bash")
 (load "~/.emacs.d/python")
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(conda-anaconda-home "/opt/intel/oneapi/intelpython/latest/condabin/")
+ '(package-selected-packages '(web-server websocket)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
