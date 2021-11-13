@@ -133,6 +133,14 @@
 (add-hook 'after-init-hook 'global-flycheck-mode)
 
 
+;; keybindings
+(global-set-key (kbd "<f5>") 'compile)
+(global-set-key (kbd "C-<left>")  'windmove-left)
+(global-set-key (kbd "C-<right>") 'windmove-right)
+(global-set-key (kbd "C-<up>")    'windmove-up)
+(global-set-key (kbd "C-<down>")  'windmove-down)
+
+
 ;; move from half space buffers using shift and arrow keys
 ;; (windmove-default-keybindings)
 
