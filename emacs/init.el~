@@ -15,11 +15,36 @@
 
 (package-initialize)
 
-;; ;; activate all packages
 
 ;; fetch the list of packages available 
 (unless package-archive-contents
   (package-refresh-contents))
+
+(setq user-full-name "Pedram Tavadze"
+            user-mail-address "petavazohi@mix.wvu.edu")
+
+
+
+;; reduce the frequency of garbage collection by making it happen on
+;; each 50MB of allocated data (the default is on every 0.76MB)
+(setq gc-cons-threshold 50000000)
+
+;; warn when opening files bigger than 100MB
+(setq large-file-warning-threshold 100000000)
+
+
+;; the toolbar is just a waste of valuable screen estate
+;; in a tty tool-bar-mode does not properly auto-load, and is
+;; already disabled anyway
+(when (fboundp 'tool-bar-mode)
+    (tool-bar-mode -1))
+
+;; Newline at end of file
+(setq require-final-newline t)
+
+;; delete the selection with a keypress
+(delete-selection-mode t)
+
 
 ;; define list of packages to install
 (defvar myPackages
@@ -27,7 +52,8 @@
     material-theme
     exec-path-from-shell
     elpy
-    pyenv-mode))
+    pyenv-mode
+    rainbow-delimiters))
 
 ;; install all packages in list
 (mapc #'(lambda (package)
@@ -49,17 +75,14 @@
 (el-get 'sync)
 
 
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
-(setq jedi:environment-root "jedi")
-
 
 ;; Use shell's $PATH
 (exec-path-from-shell-copy-env "PATH")
 (setq inhibit-startup-message t)   ;; hide the startup message
-(load-theme 'material t)           ;; load material theme
-;;(load-theme 'spacemacs-dark t)
-;;(load-theme 'dracula t)
+
+;; (load-theme 'material t)           ;; load material theme
+;; (load-theme 'spacemacs-dark t)
+;; (load-theme 'dracula t)
 
 (global-linum-mode  t)              ;; enable line numbers globally
 (setq linum-format "%4d \u2502 ")  ;; format line number spacing
@@ -67,12 +90,30 @@
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
 
 
+;; saveplace remembers your location in a file when saving files
+(save-place-mode 1) 
 
-;; ;;(setq yas-triggers-in-field t)
+;; show matching paranthesis
+(show-paren-mode 1)
+
+;; highlight the current line
+(global-hl-line-mode 1)
+
+(use-package rainbow-delimiters
+	     :ensure t)
+
+(use-package rainbow-mode
+	     :ensure t
+	     :config
+	     (add-hook 'prog-mode-hook #'rainbow-mode)
+	     (diminish 'rainbow-mode))
 
 
-;; ;; remove creating backup files
+
+;; remove creating backup files
 (setq make-backup-files nil)
 
 (load "~/.emacs.d/local")
-
+(load "~/.emacs.d/f90")
+(load "~/.emacs.d/bash")
+(load "~/.emacs.d/python")

@@ -249,6 +249,12 @@ up(){
   cd $d
 }
 
+if [ -d ~/local/DotConfig/ ]; then
+    cd ~/local/DotConfig/
+    git pull
+fi
+
+
 source ~/.bashrc.local
 
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -267,7 +273,7 @@ export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e
 alias q="qstat -u petavazohi"
 alias grep="grep --color=auto"
 alias qw='emacs -nw'
-alias ed='emacs'
+alias emacs='emacs -nw'
 alias c='clear'
 alias cls='clear;ls'
 alias rem='rm *~'
