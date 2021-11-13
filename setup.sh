@@ -26,6 +26,10 @@ fi
 cd ~
 ln -s ${base}/bash/.bashrc .
 if [ ! -f ~/.bashrc.local ]; then
-    cp ${base}/tmux/.bashrc.local .
+    cp ${base}/bash/.bashrc.local .
 fi
+
+# ipython
+cd ~/.ipython/profile_default/startup/
+ln -s ${base}/ipython/01-ipython.ipy .
 
