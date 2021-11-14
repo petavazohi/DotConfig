@@ -55,12 +55,19 @@
     flycheck
     lsp-mode
     pyenv-mode
+    auctex
+    auctex-latexmk
+    latex-preview-pane
     web-mode
     markdown-mode
     rainbow-delimiters
     yaml-mode
     windmove
-    company))
+    company
+    company-auctex
+    company-bibtex
+    yasnippet
+    ))
 
 ;; install all packages in list
 (mapc #'(lambda (package)
@@ -96,6 +103,10 @@
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
 
 
+;; enable yassnippets
+(yas-global-mode 1)
+
+
 ;; saveplace remembers your location in a file when saving files
 (save-place-mode 1)
 
@@ -128,7 +139,6 @@
 ;; flyspell-mode spell check
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
 
 ;; flycheck-mode syntax check
 ;; (add-hook 'after-init-hook 'global-flycheck-mode)
@@ -148,21 +158,13 @@
 ;; make mode
 (add-to-list 'auto-mode-alist '("\\makefile.*\\'" . makefile-mode))
 
+
+
+
 (load "~/.emacs.d/local")
 (load "~/.emacs.d/f90")
 (load "~/.emacs.d/bash")
 (load "~/.emacs.d/python")
+(if (eq major-mode 'latex-mode)
+    (load "~/.emacs.d/latex.el"))
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(conda-anaconda-home "/opt/intel/oneapi/intelpython/latest/condabin/")
- '(package-selected-packages '(web-server websocket)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

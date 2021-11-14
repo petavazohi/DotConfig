@@ -14,6 +14,8 @@ for ifile in ${base}/emacs/*
 do
     ln -s ${ifile} .
 done
+ln -s ${base}/emacs/latex-snippets/ .
+
 
 # tmux
 cd ~
