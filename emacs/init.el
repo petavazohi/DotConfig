@@ -146,6 +146,8 @@
 
 ;; keybindings
 (global-set-key (kbd "<f5>") 'compile)
+(global-set-key (kbd "<f6>") 'recompile)
+
 (global-set-key (kbd "C-<left>")  'windmove-left)
 (global-set-key (kbd "C-<right>") 'windmove-right)
 (global-set-key (kbd "C-<up>")    'windmove-up)
