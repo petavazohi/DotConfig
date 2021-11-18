@@ -130,6 +130,10 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
 
+(add-to-list 'auto-mode-alist '("\\CAR\\'" . vasp-mode))
+
+
+
 ;; company-mode text complition http://company-mode.github.io/
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -153,6 +157,9 @@
 (global-set-key (kbd "C-<up>")    'windmove-up)
 (global-set-key (kbd "C-<down>")  'windmove-down)
 
+(global-set-key (kbd "C-<prior>")  'beginning-of-buffer)
+(global-set-key (kbd "C-<next>") 'end-of-buffer)
+
 
 ;; move from half space buffers using shift and arrow keys
 ;; (windmove-default-keybindings)
@@ -167,6 +174,10 @@
 (load "~/.emacs.d/f90")
 (load "~/.emacs.d/bash")
 (load "~/.emacs.d/python")
+(load "~/.emacs.d/vasp-mode.el")
 (if (eq major-mode 'latex-mode)
     (load "~/.emacs.d/latex.el"))
+
+
+
 ;;; init.el ends here
