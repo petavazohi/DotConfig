@@ -83,7 +83,7 @@
   (highlight-lines-matching-regexp "TOTAL-FORCE" 'hi-red-b)
   (highlight-lines-matching-regexp "external pressure" 'hi-red-b)
   (highlight-lines-matching-regexp "magnetization" 'hi-red-b)
-  
+  (highlight-lines-matching-regexp "LEXCH" 'hi-red-b)
 
 
   (modify-syntax-entry ?# "< b" vasp-mode-syntax-table)

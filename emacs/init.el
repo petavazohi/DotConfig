@@ -88,10 +88,14 @@
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 (el-get 'sync)
 
+;; copy to clipboard
+(setq x-select-enable-clipboard t)
+(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+
 
 ;; Use shell's $PATH
 (exec-path-from-shell-copy-env "PATH")
-(setq inhibit-startup-message t)   ;; hide the startup message
+;; (setq inhibit-startup-message t)   ;; hide the startup message
 
 ;; (load-theme 'material t)           ;; load material theme
 ;; (load-theme 'spacemacs-dark t)
