@@ -164,6 +164,9 @@
 (global-set-key (kbd "C-<prior>")  'beginning-of-buffer)
 (global-set-key (kbd "C-<next>") 'end-of-buffer)
 
+(global-set-key (kbd "C-1") 'comment-region)
+(global-set-key (kbd "C-2") 'uncomment-region)
+
 
 ;; move from half space buffers using shift and arrow keys
 ;; (windmove-default-keybindings)
