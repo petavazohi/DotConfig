@@ -55,6 +55,12 @@
     flycheck
     lsp-mode
     pyenv-mode
+    epc
+    deferred
+    auto-complete
+    python-environment
+    conda
+    jedi
     auctex
     auctex-latexmk
     latex-preview-pane
@@ -90,6 +96,12 @@
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 (el-get 'sync)
 
+(defun comment ()
+   "Check if anything is selected use 'comment-region' else use 'comment-line'."
+  (if mark-active
+      ('comment-region)
+    'comment-line))
+
 ;; copy to clipboard
 (setq x-select-enable-clipboard t)
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
@@ -100,7 +112,8 @@
 ;; (setq inhibit-startup-message t)   ;; hide the startup message
 
 ;; (load-theme 'material t)           ;; load material theme
-(load-theme 'material-light t)           ;; load material theme
+;; (load-theme 'material-light t)           ;; load material theme
+(load-theme 'material t)           ;; load material theme
 ;; (load-theme 'dracula t)
 
 (global-linum-mode  t)              ;; enable line numbers globally
@@ -108,10 +121,6 @@
 (load "~/.emacs.d/linum-hl")
 (require 'linum-highlight-current-line-number)
 (setq linum-format 'linum-highlight-current-line-number)
-
-
-;; Allow hash to be entered
-(global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
 
 ;; enable yassnippets
 (yas-global-mode 1)
@@ -178,13 +187,12 @@
 (global-set-key (kbd "C-<prior>")  'beginning-of-buffer)
 (global-set-key (kbd "C-<next>") 'end-of-buffer)
 
-(global-set-key (kbd "C-1") 'comment-region)
-(global-set-key (kbd "C-2") 'uncomment-region)
+(global-set-key (kbd "M-1") (comment))
 (global-set-key (kbd "C-l") 'linum-mode)
 
 
-;; move from half space buffers using shift and arrow keys
-;; (windmove-default-keybindings)
+;; ;; move from half space buffers using shift and arrow keys
+;; ;; (windmove-default-keybindings)
 
 ;; make mode
 (add-to-list 'auto-mode-alist '("\\makefile.*\\'" . makefile-mode))

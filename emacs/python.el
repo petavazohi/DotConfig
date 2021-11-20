@@ -1,3 +1,8 @@
+;;; local python settings ----
+;;; Commentary :
+
+
+;;; Code:
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 (setq jedi:environment-root "jedi")
