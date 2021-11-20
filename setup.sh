@@ -35,3 +35,5 @@ fi
 cd ~/.ipython/profile_default/startup/
 ln -s ${base}/ipython/01-ipython.ipy .
 
+# github
+ln -s ${base}/git/.git-completion.bash .
