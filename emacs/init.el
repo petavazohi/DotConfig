@@ -66,7 +66,9 @@
     company
     company-auctex
     company-bibtex
+    company-shell
     yasnippet
+    org
     ))
 
 ;; install all packages in list
@@ -134,8 +136,17 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
 
-(add-to-list 'auto-mode-alist '("\\CAR\\'" . vasp-mode))
+;; org settings
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+(setq org-support-shift-select t)
 
+
+
+;; to activate vasp-mode
+(add-to-list 'auto-mode-alist '("\\CAR\\'" . vasp-mode))
 
 
 ;; company-mode text complition http://company-mode.github.io/
