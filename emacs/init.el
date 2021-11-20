@@ -100,18 +100,21 @@
 ;; (setq inhibit-startup-message t)   ;; hide the startup message
 
 ;; (load-theme 'material t)           ;; load material theme
-;; (load-theme 'spacemacs-dark t)
-(load-theme 'dracula t)
+(load-theme 'material-light t)           ;; load material theme
+;; (load-theme 'dracula t)
 
 (global-linum-mode  t)              ;; enable line numbers globally
 (setq linum-format "%4d \u2502 ")  ;; format line number spacing
+(load "~/.emacs.d/linum-hl")
+(require 'linum-highlight-current-line-number)
+(setq linum-format 'linum-highlight-current-line-number)
+
+
 ;; Allow hash to be entered
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
 
-
 ;; enable yassnippets
 (yas-global-mode 1)
-
 
 ;; saveplace remembers your location in a file when saving files
 (save-place-mode 1)
@@ -160,7 +163,7 @@
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ;; flycheck-mode syntax check
-;; (add-hook 'after-init-hook 'global-flycheck-mode)
+(add-hook 'after-init-hook 'global-flycheck-mode)
 
 
 ;; keybindings
@@ -177,6 +180,7 @@
 
 (global-set-key (kbd "C-1") 'comment-region)
 (global-set-key (kbd "C-2") 'uncomment-region)
+(global-set-key (kbd "C-l") 'linum-mode)
 
 
 ;; move from half space buffers using shift and arrow keys
@@ -192,10 +196,8 @@
 (load "~/.emacs.d/f90")
 (load "~/.emacs.d/bash")
 (load "~/.emacs.d/python")
-(load "~/.emacs.d/vasp-mode.el")
+(load "~/.emacs.d/vasp-mode")
 (if (eq major-mode 'latex-mode)
     (load "~/.emacs.d/latex.el"))
-
-
 
 ;;; init.el ends here
