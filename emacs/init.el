@@ -190,6 +190,7 @@
 (global-set-key (kbd "M-1") (comment))
 (global-set-key (kbd "C-l") 'linum-mode)
 
+(global-visual-line-mode t)
 
 ;; ;; move from half space buffers using shift and arrow keys
 ;; ;; (windmove-default-keybindings)
