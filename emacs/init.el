@@ -53,6 +53,7 @@
     elpy
     flyspell
     flycheck
+    flycheck-grammarly
     lsp-mode
     pyenv-mode
     epc
@@ -157,6 +158,9 @@
 
 
 
+;; Start fullscreen (cross-platf)
+(add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
+
 ;; to activate vasp-mode
 (add-to-list 'auto-mode-alist '("\\CAR\\'" . vasp-mode))
 
@@ -173,6 +177,8 @@
 
 ;; flycheck-mode syntax check
 (add-hook 'after-init-hook 'global-flycheck-mode)
+(require 'flycheck-grammarly)
+(setq flycheck-grammarly-check-time 0.8)
 
 
 ;; keybindings
@@ -189,6 +195,8 @@
 
 (global-set-key (kbd "M-1") (comment))
 (global-set-key (kbd "C-l") 'linum-mode)
+
+(global-set-key (kbd "C-g")  'flycheck-list-errors)
 
 (global-visual-line-mode t)
 
