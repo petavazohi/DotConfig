@@ -103,6 +103,15 @@
       ('comment-region)
     'comment-line))
 
+
+(defun close-and-kill-this-pane ()
+  "If there are multiple windows, then close this pane and kill the buffer in it also."
+  (interactive)
+  (kill-this-buffer)
+  (if (not (one-window-p))
+                (delete-window)))
+
+
 ;; copy to clipboard
 (setq x-select-enable-clipboard t)
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
@@ -195,6 +204,8 @@
 
 (global-set-key (kbd "M-1") (comment))
 (global-set-key (kbd "C-l") 'linum-mode)
+(global-set-key (kbd "C-w") 'kill-buffer)
+(global-set-key (kbd "C-o") 'find-file)
 
 (global-set-key (kbd "C-g")  'flycheck-list-errors)
 
