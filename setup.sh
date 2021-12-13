@@ -27,6 +27,9 @@ fi
 # bashrc
 cd ~
 ln -s ${base}/bash/.bashrc .
+ln -s ${base}/bash/.bashrc.aliases .
+ln -s ${base}/bash/.bashrc.functions .
+
 if [ ! -f ~/.bashrc.local ]; then
     cp ${base}/bash/.bashrc.local .
 fi
