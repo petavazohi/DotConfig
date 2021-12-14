@@ -116,6 +116,8 @@
 (setq x-select-enable-clipboard t)
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
+;; don't show warnings
+(setq warning-minimum-level :emergency)
 
 ;; Use shell's $PATH
 (exec-path-from-shell-copy-env "PATH")
@@ -202,10 +204,20 @@
 (global-set-key (kbd "C-<prior>")  'beginning-of-buffer)
 (global-set-key (kbd "C-<next>") 'end-of-buffer)
 
+
+(global-set-key (kbd "C-a") 'mark-whole-buffer)
 (global-set-key (kbd "M-1") (comment))
 (global-set-key (kbd "C-l") 'linum-mode)
 (global-set-key (kbd "C-w") 'kill-buffer)
 (global-set-key (kbd "C-o") 'find-file)
+
+
+(global-set-key (kbd "C-x \"") 'split-window-below)
+(global-set-key (kbd "C-x %") 'split-window-right)
+(global-set-key (kbd "C-x -") 'split-window-below)
+(global-set-key (kbd "C-x _") 'split-window-right)
+
+
 
 (global-set-key (kbd "C-g")  'flycheck-list-errors)
 
@@ -229,3 +241,5 @@
     (load "~/.emacs.d/latex.el"))
 
 ;;; init.el ends here
+
+
