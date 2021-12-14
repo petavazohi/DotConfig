@@ -117,12 +117,22 @@ compress () {
 }
 
 
+# MongoDB
+export ${parameter:-word}
+export MONGO_PORT=${MONGO_PORT:-'27017'}
+export MONGO_PATH=${MONGO_PATH:-'/data/db'}
+export MONGO_LOG_PATH=${MONGO_LOG_PATH:-'$HOME/'}
+
+alias start_mongodb='mongod --port ${MONGO_PORT} --dbpath ${MONGO_PATH} > ${MONGO_LOG_PATH}/$(date +'%Y%m%d-')$(hostname).log &'
+alias stop_mongodb='mongod  --port ${MONGO_PORT} --dbpath ${MONGO_PATH} --shutdown'
+
+
 drop_mongodb () {
-    mongo --port $1 $2 --eval "printjson(db.dropDatabase())"
+    mongo --port ${MONGO_PORT} $1 --eval "printjson(db.dropDatabase())"
 }
 
 function show_dbs () {
-    mongo --port $1 --quiet --eval "db.getMongo().getDBNames().forEach(function (n) { var s = db.getMongo().getDB(n).stats(1024*1024*1024); print(s['db']+' : '+ Math.round(s['storageSize'])+ 'GB')})"
+    mongo --port ${MONGO_PORT} --quiet --eval "db.getMongo().getDBNames().forEach(function (n) { var s = db.getMongo().getDB(n).stats(1024*1024*1024); print(s['db']+' : '+ Math.round(s['storageSize'])+ 'GB')})"
 }
 
 
@@ -146,7 +156,6 @@ up(){
   fi
   cd $d
 }
-
 
 
 
