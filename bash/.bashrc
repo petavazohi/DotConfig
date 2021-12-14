@@ -90,9 +90,9 @@ COLOR_RESET="\033[0m"
 
 function git_color {
     local git_status="$(git status 2> /dev/null)"
-    if grep -q "working directory clean" <<< "$git_status"; then echo -e red #$COLOR_RED
-    elif grep -q "Your branch is ahead of" <<< "$git_status"; then echo -e yellow #$COLOR_YELLOW
-    elif grep -q "nothing to commit" <<< "$git_status"; then echo -e green #$COLOR_BLUE
+    if grep -q "working directory clean" <<< "$git_status"; then echo -e $COLOR_RED
+    elif grep -q "Your branch is ahead of" <<< "$git_status"; then echo -e $COLOR_YELLOW
+    elif grep -q "nothing to commit" <<< "$git_status"; then echo -e $COLOR_GREEN
     else echo -e $COLOR_OCHRE
     fi
 }
