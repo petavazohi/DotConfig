@@ -122,7 +122,7 @@ drop_mongodb () {
 }
 
 function show_dbs () {
-    mongo --port $1 --quiet --eval "db.getMongo().getDBNames().forEach(function (n) { var s = db.getMongo().getDB(n).stats(1024*1024*1024); print(s['db']+': '+ Math.round(s['storageSize'])+ 'GB')})"
+    mongo --port $1 --quiet --eval "db.getMongo().getDBNames().forEach(function (n) { var s = db.getMongo().getDB(n).stats(1024*1024*1024); print(s['db']+' : '+ Math.round(s['storageSize'])+ 'GB')})"
 }
 
 
