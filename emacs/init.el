@@ -50,15 +50,19 @@
     material-theme
     dracula-theme
     exec-path-from-shell
-    elpy
     flyspell
     flycheck
     flycheck-grammarly
     lsp-mode
     pyenv-mode
+    numpydoc
     epc
     deferred
     auto-complete
+    elpy
+    py-autopep8
+    blacken
+    ;; ein
     python-environment
     conda
     jedi
@@ -160,6 +164,7 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
 
+
 ;; org settings
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
@@ -168,13 +173,24 @@
 (setq org-support-shift-select t)
 
 
+;; (elpy-enable)
+
+;; ;; Use IPython for REPL
+;; (setq python-shell-interpreter "ipython"
+;;       python-shell-interpreter-args "console --simple-prompt"
+;;       python-shell-prompt-detect-failure-warning nil)
+;; (add-to-list 'python-shell-completion-native-disabled-interpreters
+;; 	     "ipython")
+
+;; Enable autopep8
+(require 'py-autopep8)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
 ;; Start fullscreen (cross-platf)
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
 
 ;; to activate vasp-mode
 (add-to-list 'auto-mode-alist '("\\CAR\\'" . vasp-mode))
-
 
 ;; company-mode text complition http://company-mode.github.io/
 (add-hook 'after-init-hook 'global-company-mode)
@@ -191,6 +207,9 @@
 (require 'flycheck-grammarly)
 (setq flycheck-grammarly-check-time 0.8)
 
+
+;; (require 'bind-key)
+;; (bind-key* "C-r" (load-file user-init-file))
 
 ;; keybindings
 (global-set-key (kbd "<f5>") 'compile)
@@ -218,7 +237,6 @@
 (global-set-key (kbd "C-x _") 'split-window-right)
 
 
-
 (global-set-key (kbd "C-g")  'flycheck-list-errors)
 
 (global-visual-line-mode t)
@@ -241,5 +259,3 @@
     (load "~/.emacs.d/latex.el"))
 
 ;;; init.el ends here
-
-

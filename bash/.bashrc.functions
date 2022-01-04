@@ -127,7 +127,7 @@ alias start_mongodb='mongod --port ${MONGO_PORT} --dbpath ${MONGO_PATH} > ${MONG
 alias stop_mongodb='mongod  --port ${MONGO_PORT} --dbpath ${MONGO_PATH} --shutdown'
 
 
-drop_mongodb () {
+drop () {
     mongo --port ${MONGO_PORT} $1 --eval "printjson(db.dropDatabase())"
 }
 

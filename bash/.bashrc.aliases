@@ -73,3 +73,4 @@ alias ci='vi'
 
 alias pep8='autopep8 --in-place --aggressive --aggressive '
 
+alias mongo='mongo --port ${MONGO_PORT}'

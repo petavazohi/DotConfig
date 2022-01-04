@@ -7,7 +7,12 @@
 (setq jedi:complete-on-dot t)
 (setq jedi:environment-root "jedi")
 
-;; (add-hook 'python-mode-hook 'python-lsp-mode) 
+(require 'numpydoc)
+(define-key python-mode-map (kbd "C-c C-n") 'numpydoc-generate)
+(setq numpydoc-insert-examples-block nil)
+
+
+;; (add-hook 'python-mode-hook 'python-lsp-mode)
 
 ;; (setq yas-triggers-in-field t)
 
