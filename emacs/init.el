@@ -76,6 +76,7 @@
     company-shell
     yasnippet
     org
+    magit	
     ))
 
 ;; install all packages in list
@@ -191,6 +192,8 @@
 (require 'flycheck-grammarly)
 (setq flycheck-grammarly-check-time 0.8)
 
+
+(require 'git)
 
 ;; keybindings
 (global-set-key (kbd "<f5>") 'compile)
