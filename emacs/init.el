@@ -80,7 +80,6 @@
     company-shell
     yasnippet
     org
-    magit	
     ))
 
 ;; install all packages in list
@@ -211,7 +210,6 @@
 
 ;; (require 'bind-key)
 ;; (bind-key* "C-r" (load-file user-init-file))
-(require 'git)
 
 ;; keybindings
 (global-set-key (kbd "<f5>") 'compile)
