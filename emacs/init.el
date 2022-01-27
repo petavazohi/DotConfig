@@ -62,7 +62,6 @@
     elpy
     py-autopep8
     blacken
-    ;; ein
     python-environment
     conda
     jedi
@@ -173,19 +172,6 @@
 (setq org-support-shift-select t)
 
 
-;; (elpy-enable)
-
-;; ;; Use IPython for REPL
-;; (setq python-shell-interpreter "ipython"
-;;       python-shell-interpreter-args "console --simple-prompt"
-;;       python-shell-prompt-detect-failure-warning nil)
-;; (add-to-list 'python-shell-completion-native-disabled-interpreters
-;; 	     "ipython")
-
-;; Enable autopep8
-(require 'py-autopep8)
-(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
-
 ;; Start fullscreen (cross-platf)
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
 
@@ -253,7 +239,8 @@
 (load "~/.emacs.d/local")
 (load "~/.emacs.d/f90")
 (load "~/.emacs.d/bash")
-(load "~/.emacs.d/python")
+(if (eq major-mode 'python-mode)
+    (load "~/.emacs.d/python"))
 (load "~/.emacs.d/vasp-mode")
 (if (eq major-mode 'latex-mode)
     (load "~/.emacs.d/latex.el"))
