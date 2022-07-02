@@ -109,8 +109,11 @@ del () {
 
 grep_all () {
     for i in $(find . -name $2); do 
-	echo $i;
-	grep $1 $i;
+	if  grep -q $1 $i;
+	then
+	    echo $i
+	    grep $1 $i
+	fi
     done
 }
 
