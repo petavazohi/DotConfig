@@ -89,6 +89,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
+
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
@@ -114,7 +115,6 @@
   (if (not (one-window-p))
                 (delete-window)))
 
-
 ;; copy to clipboard
 (setq x-select-enable-clipboard t)
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
@@ -136,6 +136,10 @@
 (load "~/.emacs.d/linum-hl")
 (require 'linum-highlight-current-line-number)
 (setq linum-format 'linum-highlight-current-line-number)
+
+
+;; enable autopair brackets
+(electric-pair-mode 1)
 
 ;; enable yassnippets
 (yas-global-mode 1)
@@ -161,6 +165,9 @@
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+;; turn-off paste indentations
+(electric-indent-mode 0)
 
 
 
