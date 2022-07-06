@@ -29,6 +29,7 @@ cd ~
 ln -s ${base}/bash/.bashrc .
 ln -s ${base}/bash/.bashrc.aliases .
 ln -s ${base}/bash/.bashrc.functions .
+ln -s ${base}/bash/.git-completion.bash .
 
 if [ ! -f ~/.bashrc.local ]; then
     cp ${base}/bash/.bashrc.local .
