@@ -234,7 +234,7 @@
 (global-set-key (kbd "C-x %") 'split-window-right)
 (global-set-key (kbd "C-x -") 'split-window-below)
 (global-set-key (kbd "C-x _") 'split-window-right)
-
+(define-key global-map (kbd "C-z") 'undo)
 
 (global-set-key (kbd "C-g")  'flycheck-list-errors)
 
