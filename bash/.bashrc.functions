@@ -132,15 +132,22 @@ export MONGO_LOG_PATH=${MONGO_LOG_PATH:-'$HOME/'}
 
 alias start_mongodb='mongod --port ${MONGO_PORT} --dbpath ${MONGO_PATH} > ${MONGO_LOG_PATH}/$(date +'%Y%m%d-')$(hostname).log &'
 alias stop_mongodb='mongod  --port ${MONGO_PORT} --dbpath ${MONGO_PATH} --shutdown'
+alias mongo='mongo --port ${MONGO_PORT}'
 
 
 drop () {
-    mongo --port ${MONGO_PORT} $1 --eval "printjson(db.dropDatabase())"
+    mongo $1 --eval "printjson(db.dropDatabase())"
 }
 
 function show_dbs () {
-    mongo --port ${MONGO_PORT} --quiet --eval "db.getMongo().getDBNames().forEach(function (n) { var s = db.getMongo().getDB(n).stats(1024*1024*1024); print(s['db']+' : '+ Math.round(s['storageSize'])+ 'GB')})"
+    mongo --quiet --eval "db.getMongo().getDBNames().forEach(function (n) { var s = db.getMongo().getDB(n).stats(1024*1024*1024); print(s['db']+' : '+ Math.round(s['storageSize'])+ 'GB')})"
 }
+
+
+function show_collections () {
+    mongo  $1 --eval "printjson(db.getCollectionNames())"
+}
+
 
 
 if [ -f /etc/bashrc ]; then
@@ -168,7 +175,7 @@ up(){
 
 # github
 if [ -f ~/.git-completion.bash ]; then
-    . ~/.git-completion.bash    
+    . ~/.git-completion.bash
 fi
 
 

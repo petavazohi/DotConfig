@@ -109,6 +109,7 @@ function git_branch {
 
 export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]]: \[\e[33m\]\w\[\e[m\] \[\$(git_color)\]\$(git_branch) \n\[\e[37m\]\\\$ >  "
 
+alias disable_github='export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]]: \[\e[33m\]\w\[\e[m\] \n\[\e[37m\]\\\$ >  "'
 
 # paths
 export PATH="$HOME/local/scripts:$PATH"
