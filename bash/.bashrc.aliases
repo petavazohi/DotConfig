@@ -70,7 +70,7 @@ alias vf='cd'
 alias tial='tail'
 alias vo='vi'
 alias ci='vi'
-#weather
+# weather
 
+# Python
 alias pep8='autopep8 --in-place --aggressive --aggressive '
-
