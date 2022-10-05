@@ -2,9 +2,6 @@
 ;;; Commentary:
 
 
-
-
-
 ;;; Code:
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -202,13 +199,13 @@
 (setq flycheck-grammarly-check-time 0.8)
 
 
-(require 'fill-column-indicator)
-(setq-default display-fill-column-indicator-column 79)
-(global-display-fill-column-indicator-mode 1)
-(setq column-number-mode t)
+;; (require 'fill-column-indicator)
+;; (setq-default display-fill-column-indicator-column 79)
+;; (global-display-fill-column-indicator-mode 1)
+;; (setq column-number-mode t)
 
-;; (require 'bind-key)
-;; (bind-key* "C-r" (load-file user-init-file))
+(require 'bind-key)
+(bind-key* "C-r" (load-file user-init-file))
 
 ;; keybindings
 (global-set-key (kbd "<f5>") 'compile)
@@ -234,7 +231,6 @@
 (global-set-key (kbd "C-x %") 'split-window-right)
 (global-set-key (kbd "C-x -") 'split-window-below)
 (global-set-key (kbd "C-x _") 'split-window-right)
-(define-key global-map (kbd "C-z") 'undo)
 
 (global-set-key (kbd "C-g")  'flycheck-list-errors)
 
@@ -245,7 +241,6 @@
 
 ;; make mode
 (add-to-list 'auto-mode-alist '("\\makefile.*\\'" . makefile-mode))
-
 
 
 
