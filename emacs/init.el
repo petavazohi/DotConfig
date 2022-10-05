@@ -46,40 +46,42 @@
 
 ;; define list of packages to install
 (defvar myPackages
-  '(better-defaults
-    material-theme
-    dracula-theme
-    exec-path-from-shell
-    flyspell
-    flycheck
-    flycheck-grammarly
-    lsp-mode
-    pyenv-mode
-    numpydoc
-    epc
-    deferred
-    auto-complete
-    elpy
-    py-autopep8
-    blacken
-    python-environment
-    conda
-    jedi
-    auctex
-    auctex-latexmk
-    latex-preview-pane
-    web-mode
-    markdown-mode
-    rainbow-delimiters
-    yaml-mode
-    windmove
-    company
-    company-auctex
-    company-bibtex
-    company-shell
-    yasnippet
-    org
-    fill-column-indicator
+  '(auctex
+auctex-latexmk
+auto-complete
+better-defaults
+blacken
+company
+company-auctex
+company-bibtex
+company-box
+company-shell
+conda
+deferred
+dracula-theme
+elpy
+epc
+exec-path-from-shell
+fill-column-indicator
+flycheck
+flycheck-grammarly
+flyspell
+jedi
+latex-preview-pane
+lsp-mode
+markdown-mode
+material-theme
+numpydoc
+org
+py-autopep8
+pyenv-mode
+python-environment
+rainbow-delimiters
+web-mode
+windmove
+yaml-mode
+yasnippet
+
     ))
 
 ;; install all packages in list
@@ -170,6 +172,9 @@
 ;; turn-off paste indentations
 (electric-indent-mode 0)
 
+;; company mode
+(require 'company-box)
+(add-hook 'company-mode-hook 'company-box-mode)
 
 
 ;; org settings
@@ -226,6 +231,7 @@
 (global-set-key (kbd "C-a") 'mark-whole-buffer)
 (global-set-key (kbd "M-1") (comment))
 (global-set-key (kbd "C-l") 'linum-mode)
+(global-set-key (kbd "C-q") 'display-fill-column-indicator-mode)
 (global-set-key (kbd "C-w") 'kill-buffer)
 (global-set-key (kbd "C-o") 'find-file)
 
@@ -234,6 +240,7 @@
 (global-set-key (kbd "C-x %") 'split-window-right)
 (global-set-key (kbd "C-x -") 'split-window-below)
 (global-set-key (kbd "C-x _") 'split-window-right)
+
 (define-key global-map (kbd "C-z") 'undo)
 
 (global-set-key (kbd "C-g")  'flycheck-list-errors)

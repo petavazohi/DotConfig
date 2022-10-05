@@ -8,7 +8,7 @@
 (setq jedi:environment-root "jedi")
 
 (require 'numpydoc)
-(define-key python-mode-map (kbd "C-c C-n") 'numpydoc-generate)
+(define-key python-mode-map (kbd "C-S-2") 'numpydoc-generate)
 (setq numpydoc-insert-examples-block nil)
 
 

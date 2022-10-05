@@ -57,9 +57,9 @@ trap ' '20
 export base=$(pwd)
 
 
-source ~/.bashrc.local
 source ~/.bashrc.functions
 source ~/.bashrc.aliases
+source ~/.bashrc.local
 
 # export LESS_TERMCAP_mb=$'\E[01;31m'
 # export LESS_TERMCAP_md=$'\E[01;31m'
@@ -113,6 +113,7 @@ alias disable_github='export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\
 
 # paths
 export PATH="$HOME/local/scripts:$PATH"
+export PATH="$HOME/local/ForensicFit/scripts/:$PATH"
 export PYTHONPATH="$HOME/local/PyChemia:$PYTHONPATH";
 export PYTHONPATH="$HOME/local/pyprocar:$PYTHONPATH";
 export PYTHONPATH="$HOME/local/scripts:$PYTHONPATH";
