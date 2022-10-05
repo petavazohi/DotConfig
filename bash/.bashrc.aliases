@@ -31,7 +31,7 @@ alias vdir='ls --color=auto --format=long'
 alias ll='ls -l'                              # long list
 alias la='ls -A'                              # all but . and ..
 alias l='ls -CF'                              #
-
+alias src='source ~/.bashrc'
 
 alias q="qstat -u petavazohi"
 alias grep="grep --color=auto"
@@ -43,6 +43,7 @@ alias tls='tmux ls'
 alias ta='tmux a -t'
 alias weather='curl  wttr.in/?%m3'
 alias print_header='echo "#!/usr/bin/env python3"'
+alias e='exit'
 
 
 # Github aliases

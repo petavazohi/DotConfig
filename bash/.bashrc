@@ -118,3 +118,5 @@ export PYTHONPATH="$HOME/local/PyChemia:$PYTHONPATH";
 export PYTHONPATH="$HOME/local/pyprocar:$PYTHONPATH";
 export PYTHONPATH="$HOME/local/scripts:$PYTHONPATH";
 
+
+
