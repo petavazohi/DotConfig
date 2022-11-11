@@ -85,26 +85,26 @@
 #backend: Agg
 
 # The port to use for the web server in the WebAgg backend.
-webagg.port: 8988
+# webagg.port: 8988
 
 # The address on which the WebAgg web server should be reachable
-webagg.address: 127.0.0.1
+# webagg.address: 127.0.0.1
 
 # If webagg.port is unavailable, a number of other random ports will
 # be tried until one that is available is found.
-webagg.port_retries: 50
+# webagg.port_retries: 50
 
 # When True, open the web browser to the plot that is shown
-webagg.open_in_browser: True
+# webagg.open_in_browser: True
 
 # If you are running pyplot inside a GUI and your backend choice
 # conflicts, we will automatically try to find a compatible one for
 # you if backend_fallback is True
-backend_fallback: True
+# backend_fallback: True
 
-interactive: False
-toolbar:     toolbar2  # {None, toolbar2, toolmanager}
-timezone:    UTC       # a pytz timezone string, e.g., US/Central or Europe/Paris
+# interactive: False
+# toolbar:     toolbar2  # {None, toolbar2, toolmanager}
+# timezone:    UTC       # a pytz timezone string, e.g., US/Central or Europe/Paris
 
 
 # ***************************************************************************
@@ -456,7 +456,7 @@ date.autoformatter.second:      %H:%M:%S
 date.autoformatter.microsecond: %M:%S.%f
 # The reference date for Matplotlib's internal date representation
 # See https://matplotlib.org/examples/ticks_and_spines/date_precision_and_epochs.py
-date.epoch: 1970-01-01T00:00:00
+# date.epoch: 1970-01-01T00:00:00
 # 'auto', 'concise':
 date.converter:                  auto
 # For auto converter whether to use interval_multiples:
@@ -560,10 +560,10 @@ figure.dpi:         100       # figure dots per inch
 figure.facecolor:   white     # figure face color
 figure.edgecolor:   white     # figure edge color
 figure.frameon:     True      # enable figure frame
-figure.max_open_warning: 20   # The maximum number of figures to open through
+# figure.max_open_warning: 20   # The maximum number of figures to open through
                             #    the pyplot interface before emitting a warning.
                             #    If less than one this feature is disabled.
-figure.raise_window : True    # Raise the GUI window to front when show() is called.
+# figure.raise_window : True    # Raise the GUI window to front when show() is called.
 
 # The figure subplot parameters.  All dimensions are a fraction of the figure width and height.
 figure.subplot.left:   0.125  # the left side of the subplots of the figure
@@ -685,7 +685,7 @@ savefig.bbox:      standard    # {tight, standard}
                                 # backends (e.g. 'ffmpeg') but will work with those
                                 # based on temporary files (e.g. 'ffmpeg_file')
 savefig.pad_inches:  0.1       # padding to be used, when bbox is set to 'tight'
-savefig.directory:   ~         # default directory in savefig dialog, gets updated after
+# savefig.directory:   ~         # default directory in savefig dialog, gets updated after
                                 # interactive saves, unless set to the empty string (i.e.
                                 # the current directory); use '.' to start at the current
                                 # directory but update after interactive saves
@@ -694,7 +694,7 @@ savefig.transparent: False     # whether figures are saved with a transparent
 savefig.orientation: portrait  # orientation of saved figure, for PostScript output only
 
 ## tk backend params
-tk.window_focus:   False  # Maintain shell focus for TkAgg
+# tk.window_focus:   False  # Maintain shell focus for TkAgg
 
 ## ps backend params
 ps.papersize:      letter  # {auto, letter, legal, ledger, A0-A10, B0-B10}
@@ -729,7 +729,7 @@ pgf.preamble:  # See text.latex.preamble for documentation
 pgf.texsystem: xelatex
 
 ## docstring params
-docstring.hardcopy: False  # set this when you want to generate hardcopy docstring
+# docstring.hardcopy: False  # set this when you want to generate hardcopy docstring
 
 
 # ***************************************************************************
