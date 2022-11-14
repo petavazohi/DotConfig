@@ -6,10 +6,12 @@ export base=$(pwd)
 if [ ! -d ~/.emacs.d ]; then
     mkdir ~/.emacs.d
 fi
+
 cd ~/.emacs.d
 if [ ! -f ~/emac.d/local.el ]; then
     cp ${base}/emacs/local.el .
 fi
+
 for ifile in ${base}/emacs/*
 do
     ln -s ${ifile} .
@@ -39,11 +41,19 @@ if [ ! -f ~/.bashrc.local ]; then
 fi
 
 # ipython
-if [ ! -f ~/.ipython/profile_default/startup/ ]; then
+if [ -d ~/.ipython/profile_default/startup/ ]; then
     cd ~/.ipython/profile_default/startup/
     ln -s ${base}/ipython/01-ipython.ipy .
     cd ~
 fi
+
+# matplotlib
+if [ -d ~/.config/matplotlib ]; then
+    cd ~/.config/matplotlib
+    ln -s ${base}/matplotlibrc .
+    cd ~
+
+cd ${base}
 
 # github
 ln -s ${base}/git/.git-completion.bash .
