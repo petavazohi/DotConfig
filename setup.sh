@@ -22,16 +22,17 @@ ln -s ${base}/emacs/snippets/ .
 # tmux
 cd ~
 ln -s ${base}/tmux/.tmux.conf .
-if [ ! -f ~/.tmux.conf.local ]; then
-    cp ${base}/tmux/.tmux.conf.local .
+if [ ! -f ~/.tmux.local.conf ]; then
+    cp ${base}/tmux/.tmux.local.conf .
 fi
 
 # bashrc
 cd ~
-if [ ! -f ~/.bashrc ]; then
+if [ -f ~/.bashrc ]; then
     mv ~/.bashrc ~/.bashrc.old
     ln -s ${base}/bash/.bashrc .
 fi
+
 ln -s ${base}/bash/.bashrc.aliases .
 ln -s ${base}/bash/.bashrc.functions .
 ln -s ${base}/bash/.git-completion.bash .
@@ -52,9 +53,9 @@ if [ -d ~/.config/matplotlib ]; then
     cd ~/.config/matplotlib
     ln -s ${base}/matplotlibrc .
     cd ~
+fi
 
 cd ${base}
 
 # github
 ln -s ${base}/git/.git-completion.bash .
- 
