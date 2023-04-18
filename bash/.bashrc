@@ -106,6 +106,9 @@ else
     export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]]: \[\e[33m\]\w\[\e[m\] \n\[\e[37m\]\\\$ >  "
 fi
 
+function disable_git_status(){
+    export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]]: \[\e[33m\]\w\[\e[m\] \n\[\e[37m\]\\\$ >  "
+}
 # paths
 export PATH="$HOME/local/scripts:$PATH"
 export PATH="$HOME/local/ForensicFit/scripts/:$PATH"
