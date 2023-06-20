@@ -35,5 +35,6 @@ if (Test-Path $PROFILE.CurrentUserAllHosts) {
 }
 Copy-Item PowerShell\ohp-theme.json $targetDir
 oh-my-posh init pwsh --config PowerShell\ohp-theme.json | Invoke-Expression
+Install-Module -Name Terminal-Icons -Repository PSGallery
 . $PROFILE.CurrentUserAllHosts
 Write-Host "Do not forget to install fonts you can use 'oh-my-posh font install' in Admin PowerShell"
