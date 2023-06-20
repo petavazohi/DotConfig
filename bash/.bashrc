@@ -103,8 +103,14 @@ if [ "$current_hostname" == "$head_node_hostname" ]; then
             echo "($commit)"
         fi
     }
+    if [ -x ~/.local/bin/oh-my-posh ]; then
+	    eval "$(oh-my-posh init bash --config ~/.omp.json)"
+    else
+	    export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]]: \[\e[33m\]\w\[\e[m\] \[\$(git_color)\]\$(git_branch) \n\[\e[37m\]\\\$ >  "
+    fi
 
-    export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]]: \[\e[33m\]\w\[\e[m\] \[\$(git_color)\]\$(git_branch) \n\[\e[37m\]\\\$ >  "
+    
+
 else
     echo "You are connected to a computation node."
     export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]]: \[\e[33m\]\w\[\e[m\] \n\[\e[37m\]\\\$ >  "
