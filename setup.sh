@@ -35,6 +35,9 @@ fi
 
 # Oh-my-posh
 if [ ! -x ~/.local/bin/oh-my-posh ]; then
+    if [ ! -d ~/.local/bin ]; then
+        mkdir -p ~/.local/bin
+    fi
     curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin/
 fi
 ln -s ${base}/.omp.json .
