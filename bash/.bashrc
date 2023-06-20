@@ -2,55 +2,15 @@
 # [[ "$-" != *i* ]] && return
 
 # Shell Options
-#
-# See man bash for more options...
-#
-# Don't wait for job termination notification
-# set -o notify
-#
-# Don't use ^D to exit
-# set -o ignoreeof
-#
-# Use case-insensitive filename globbing
-# shopt -s nocaseglob
-#
-# Make bash append rather than overwrite the history on disk
-# shopt -s histappend
-#
-# When changing directory small typos can be ignored by bash
-# for example, cd /vr/lgo/apaache would find /var/log/apache
-# shopt -s cdspell
-
-# Programmable completion enhancements are enabled via
-# /etc/profile.d/bash_completion.sh when the package bash_completetion
-# is installed.  Any completions you add in ~/.bash_completion are
-# sourced last.
-
-# History Options
-#
-# Don't put duplicate lines in the history.
-# export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-#
-# Ignore some controlling instructions
-# HISTIGNORE is a colon-delimited list of patterns which should be excluded.
-# The '&' is a special pattern which suppresses duplicate entries.
-# export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
-# export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls command as well
-#
-# Whenever displaying the prompt, write the previous line to disk
-# export PROMPT_COMMAND="history -a"
 
 # Disable CRTL+Z
 trap ' '20
 
-# Umask
-#
-# /etc/profile sets 022, removing write perms to group + others.
-# Set a more restrictive umask: i.e. no exec perms for others:
-# umask 027
-# Paranoid: neither group nor others have any perms:
-# umask 077
 
+
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 export base=$(pwd)
 
 head_node_hostname=$(hostname) # change the name of the hostname in .bashrc.local
@@ -103,8 +63,14 @@ if [ "$current_hostname" == "$head_node_hostname" ]; then
             echo "($commit)"
         fi
     }
+    if [ -x ~/.local/bin/oh-my-posh ]; then
+	    eval "$(oh-my-posh init bash --config ~/.omp.json)"
+    else
+	    export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]]: \[\e[33m\]\w\[\e[m\] \[\$(git_color)\]\$(git_branch) \n\[\e[37m\]\\\$ >  "
+    fi
 
-    export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]]: \[\e[33m\]\w\[\e[m\] \[\$(git_color)\]\$(git_branch) \n\[\e[37m\]\\\$ >  "
+    
+
 else
     echo "You are connected to a computation node."
     export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]]: \[\e[33m\]\w\[\e[m\] \n\[\e[37m\]\\\$ >  "
