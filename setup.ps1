@@ -6,7 +6,8 @@ if (!(winget list --id "JanDeDobbeleer.OhMyPosh")) {
     Write-Host "oh-my-posh has been installed."
 } else {
     # If 'oh-my-posh' is already installed, print a message
-    Write-Host "oh-my-posh is already installed."
+    Write-Host "oh-my-posh is already installed, Updating.."
+    winget upgrade JanDeDobbeleer.OhMyPosh -s winget
 }
 
 # Define the source file - replace this with your actual file path
