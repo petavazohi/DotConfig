@@ -4,15 +4,15 @@
 (& "C:\ProgramData\Anaconda3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
 #endregion
 
-function source {
-    if (Test-Path $PROFILE.AllUsersAllHosts) { . $PROFILE.AllUsersAllHosts }
-    if (Test-Path $PROFILE.AllUsersCurrentHost) { . $PROFILE.AllUsersCurrentHost }
-    if (Test-Path $PROFILE.CurrentUserAllHosts) { . $PROFILE.CurrentUserAllHosts }
-    if (Test-Path $PROFILE.CurrentUserCurrentHost) { . $PROFILE.CurrentUserCurrentHost }
-}
-$targetDir = Split-Path $PROFILE.CurrentUserAllHosts
+# function source {
+#     if (Test-Path $PROFILE.AllUsersAllHosts) { . $PROFILE.AllUsersAllHosts }
+#     if (Test-Path $PROFILE.AllUsersCurrentHost) { . $PROFILE.AllUsersCurrentHost }
+#     if (Test-Path $PROFILE.CurrentUserAllHosts) { . $PROFILE.CurrentUserAllHosts }
+#     if (Test-Path $PROFILE.CurrentUserCurrentHost) { . $PROFILE.CurrentUserCurrentHost }
+# }
+$targetDir = Split-Path $PROFILE
 oh-my-posh init pwsh --config "$targetDir\ohp-theme.json" | Invoke-Expression
-Import-Module -Name Terminal-Icons -ErrorAction SilentlyContinue
+Import-Module -Name Terminal-Icons 
 # function ConvertTo-RelativePath {
 #     param($Path)
 #     if ($Path.StartsWith($HOME)) {

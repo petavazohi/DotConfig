@@ -33,8 +33,35 @@ if (Test-Path $PROFILE) {
     Write-Host "`$PROFILE has been created with the content of $sourceFile
     ."
 }
-Copy-Item PowerShell\ohp-theme.json $targetDir
-oh-my-posh init pwsh --config PowerShell\ohp-theme.json | Invoke-Expression
-Install-Module -Name Terminal-Icons -Repository PSGallery
-. $PROFILE.CurrentUserAllHosts
+Copy-Item .omp.json $targetDir
+oh-my-posh init pwsh --config .omp.json | Invoke-Expression
+
+# Ensure the NuGet package provider is available
+if (!(Get-PackageProvider -ListAvailable -Name NuGet)) {
+    Install-PackageProvider -Name NuGet -Force
+}
+
+# Check if the PSGallery repository is trusted
+if ((Get-PSRepository -Name PSGallery).InstallationPolicy -ne "Trusted") {
+    # If not, set PSGallery repository as trusted
+    Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+}
+
+# install Terminal-Icons
+if (!(Get-Module -ListAvailable -Name Terminal-Icons)) {
+    # Check if running in elevated session
+    if (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+        Write-Warning "You don't have enough permissions to install the module. Please run the script as an Administrator."
+        exit
+    }
+    # If Terminal-Icons module isn't installed, install it
+    Write-Output "Terminal-Icons module isn't installed. Installing now..."
+    
+    # Now, we're ready to install Terminal-Icons
+    Install-Module -Name Terminal-Icons -Repository PSGallery -Force
+} else {
+    Write-Output "Terminal-Icons module is already installed."
+}
+
+. $PROFILE
 Write-Host "Do not forget to install fonts you can use 'oh-my-posh font install' in Admin PowerShell"
