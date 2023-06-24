@@ -6,7 +6,8 @@ if (!(winget list --id "JanDeDobbeleer.OhMyPosh")) {
     Write-Host "oh-my-posh has been installed."
 } else {
     # If 'oh-my-posh' is already installed, print a message
-    Write-Host "oh-my-posh is already installed."
+    Write-Host "oh-my-posh is already installed, Updating.."
+    winget upgrade JanDeDobbeleer.OhMyPosh -s winget
 }
 
 # Define the source file - replace this with your actual file path
@@ -34,5 +35,6 @@ if (Test-Path $PROFILE) {
 }
 Copy-Item PowerShell\ohp-theme.json $targetDir
 oh-my-posh init pwsh --config PowerShell\ohp-theme.json | Invoke-Expression
-. $PROFILE
+Install-Module -Name Terminal-Icons -Repository PSGallery
+. $PROFILE.CurrentUserAllHosts
 Write-Host "Do not forget to install fonts you can use 'oh-my-posh font install' in Admin PowerShell"

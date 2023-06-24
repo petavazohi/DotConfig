@@ -12,6 +12,7 @@ function source {
 }
 $targetDir = Split-Path $PROFILE.CurrentUserAllHosts
 oh-my-posh init pwsh --config "$targetDir\ohp-theme.json" | Invoke-Expression
+Import-Module -Name Terminal-Icons -ErrorAction SilentlyContinue
 # function ConvertTo-RelativePath {
 #     param($Path)
 #     if ($Path.StartsWith($HOME)) {
