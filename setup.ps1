@@ -33,7 +33,7 @@ if (Test-Path $PROFILE) {
     Write-Host "`$PROFILE has been created with the content of $sourceFile
     ."
 }
-Copy-Item .omp.json $targetDir
+Copy-Item .omp.json $targetDir/ohp-theme.json
 oh-my-posh init pwsh --config .omp.json | Invoke-Expression
 
 # Ensure the NuGet package provider is available
