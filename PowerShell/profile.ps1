@@ -26,7 +26,7 @@ function ChnDir {
             $shell = New-Object -COM WScript.Shell
             $shortcut = $shell.CreateShortcut($FullPath)
             if (Test-Path $shortcut.TargetPath) {
-                $Path = Split-Path $shortcut.TargetPath
+                $Path = $shortcut.TargetPath
             } else {
                 return
             }
