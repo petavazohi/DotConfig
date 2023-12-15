@@ -1,275 +1,124 @@
-;;; init.el --- Emacs configuration
-;;; Commentary:
+;;; init.el --- Simplified and Organized Emacs Configuration
 
-
-;;; Code:
+;; Package Management Setup
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives
-              '("elpy" . "http://jorgenschaefer.github.io/packages/"))
-
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-;; fetch the list of packages available
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+
+;; Refresh package contents before installing
 (unless package-archive-contents
   (package-refresh-contents))
 
+;; Package List
+;; Install and configure packages with use-package
+(use-package tex
+  :defer t
+  :ensure auctex
+  :config
+  (setq TeX-auto-save t))
+(use-package auctex-latexmk
+  :after tex
+  :config
+  (auctex-latexmk-setup))
+
+(use-package auctex-latexmk)
+(use-package auto-complete)
+(use-package better-defaults)
+(use-package blacken)
+(use-package company)
+(use-package company-auctex)
+(use-package company-bibtex)
+(use-package company-box)
+(use-package company-shell)
+(use-package conda)
+(use-package deferred)
+(use-package dracula-theme)
+(use-package elpy)
+(use-package epc)
+(use-package exec-path-from-shell)
+(use-package fill-column-indicator)
+(use-package flycheck)
+(use-package flycheck-grammarly)
+(use-package flyspell)
+(use-package jedi)
+(use-package latex-preview-pane)
+(use-package lsp-mode)
+(use-package markdown-mode)
+(use-package material-theme)
+(use-package numpydoc)
+(use-package org)
+(use-package py-autopep8)
+(use-package pyenv-mode)
+(use-package python-environment)
+(use-package rainbow-delimiters)
+(use-package web-mode)
+(use-package windmove)
+(use-package yaml-mode)
+(use-package yasnippet)
+
+
+;;; User Information
 (setq user-full-name "Pedram Tavadze"
-            user-mail-address "petavazohi@mix.wvu.edu")
+      user-mail-address "petavazohi@mix.wvu.edu")
 
-
-
-;; reduce the frequency of garbage collection by making it happen on
-;; each 50MB of allocated data (the default is on every 0.76MB)
+;;; Performance Tuning
 (setq gc-cons-threshold 50000000)
-
-;; warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
 
-
-;; the toolbar is just a waste of valuable screen estate
-;; in a tty tool-bar-mode does not properly auto-load, and is
-;; already disabled anyway
-(when (fboundp 'tool-bar-mode)
-    (tool-bar-mode -1))
-
-;; Newline at end of file
+;;; UI Tweaks
+(tool-bar-mode -1)
 (setq require-final-newline t)
-
-;; delete the selection with a key-press
 (delete-selection-mode t)
+(global-linum-mode t)
+(setq linum-format "%4d \u2502 ")
+(load-theme 'material t)
 
-
-;; define list of packages to install
-(defvar myPackages
-  '(auctex
-auctex-latexmk
-auto-complete
-better-defaults
-blacken
-company
-company-auctex
-company-bibtex
-company-box
-company-shell
-conda
-deferred
-dracula-theme
-elpy
-epc
-exec-path-from-shell
-fill-column-indicator
-flycheck
-flycheck-grammarly
-flyspell
-jedi
-latex-preview-pane
-lsp-mode
-markdown-mode
-material-theme
-numpydoc
-org
-py-autopep8
-pyenv-mode
-python-environment
-rainbow-delimiters
-web-mode
-windmove
-yaml-mode
-yasnippet
-
-    ))
-
-;; install all packages in list
-(mapc #'(lambda (package)
-    (unless (package-installed-p package)
-      (package-install package)))
-      myPackages)
-
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
-
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
-
-
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-(el-get 'sync)
-
-(defun comment ()
-   "Check if anything is selected use 'comment-region' else use 'comment-line'."
-  (if mark-active
-      ('comment-region)
-    'comment-line))
-
-
-(defun close-and-kill-this-pane ()
-  "If there are multiple windows, then close this pane and kill the buffer in it also."
-  (interactive)
-  (kill-this-buffer)
-  (if (not (one-window-p))
-                (delete-window)))
-
-;; copy to clipboard
-(setq x-select-enable-clipboard t)
-(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
-
-;; don't show warnings
-(setq warning-minimum-level :emergency)
-
-;; Use shell's $PATH
-(exec-path-from-shell-copy-env "PATH")
-;; (setq inhibit-startup-message t)   ;; hide the startup message
-
-;; (load-theme 'material t)           ;; load material theme
-;; (load-theme 'material-light t)           ;; load material theme
-(load-theme 'material t)           ;; load material theme
-;; (load-theme 'dracula t)
-
-(global-linum-mode  t)              ;; enable line numbers globally
-(setq linum-format "%4d \u2502 ")  ;; format line number spacing
-(load "~/.emacs.d/linum-hl")
-(require 'linum-highlight-current-line-number)
-(setq linum-format 'linum-highlight-current-line-number)
-
-
-;; enable autopair brackets
+;;; Editing Enhancements
 (electric-pair-mode 1)
-
-;; enable yassnippets
-(yas-global-mode 1)
-
-;; saveplace remembers your location in a file when saving files
-(save-place-mode 1)
-
-;; show matching paranthesis
 (show-paren-mode 1)
-
-;; highlight the current line
 (global-hl-line-mode 1)
-
-;; pranthesis will have differnt colors
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
-;; web-mode settings
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+;;; Load External Files and Mode-Specific Configurations
+(load "~/.emacs.d/local" t)
+(load "~/.emacs.d/f90" t)
+(load "~/.emacs.d/bash" t)
+(load "~/.emacs.d/vasp-mode" t)
+(add-hook 'latex-mode-hook (lambda () (load "~/.emacs.d/latex" t)))
+(add-hook 'python-mode-hook (lambda () (load "~/.emacs.d/python" t)))
 
-;; turn-off paste indentations
-(electric-indent-mode 0)
+;;; Custom Function Definitions
+(defun comment-or-uncomment-region-or-line ()
+  "Comments or uncomments the region or the current line if no region is selected."
+  (interactive)
+  (let ((start (line-beginning-position))
+        (end (line-end-position)))
+    (when (region-active-p)
+      (setq start (region-beginning) end (region-end)))
+    (comment-or-uncomment-region start end)))
 
-;; company mode
-(require 'company-box)
-(add-hook 'company-mode-hook 'company-box-mode)
-
-
-;; org settings
-(require 'org)
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
-(setq org-support-shift-select t)
-
-
-;; Start fullscreen (cross-platf)
-(add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
-
-;; to activate vasp-mode
-(add-to-list 'auto-mode-alist '("\\CAR\\'" . vasp-mode))
-
-;; company-mode text complition http://company-mode.github.io/
-(add-hook 'after-init-hook 'global-company-mode)
-
-;; remove creating backup files
-(setq make-backup-files nil)
-
-;; flyspell-mode spell check
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-
-;; flycheck-mode syntax check
-(add-hook 'after-init-hook 'global-flycheck-mode)
-(require 'flycheck-grammarly)
-(setq flycheck-grammarly-check-time 0.8)
-
-
-;; (require 'fill-column-indicator)
-;; (setq-default display-fill-column-indicator-column 79)
-;; (global-display-fill-column-indicator-mode 1)
-;; (setq column-number-mode t)
-
-(require 'bind-key)
-(bind-key* "C-r" (load-file user-init-file))
-
-;; keybindings
+;;; Keybindings
+(global-set-key (kbd "M-;") 'comment-or-uncomment-region-or-line)
 (global-set-key (kbd "<f5>") 'compile)
 (global-set-key (kbd "<f6>") 'recompile)
+;; Add more keybindings as needed...
 
-(global-set-key (kbd "C-<left>")  'windmove-left)
-(global-set-key (kbd "C-<right>") 'windmove-right)
-(global-set-key (kbd "C-<up>")    'windmove-up)
-(global-set-key (kbd "C-<down>")  'windmove-down)
-
-(global-set-key (kbd "C-<prior>")  'beginning-of-buffer)
-(global-set-key (kbd "C-<next>") 'end-of-buffer)
-
-
-(global-set-key (kbd "C-a") 'mark-whole-buffer)
-(global-set-key (kbd "M-1") (comment))
-(global-set-key (kbd "C-l") 'linum-mode)
-(global-set-key (kbd "C-q") 'display-fill-column-indicator-mode)
-(global-set-key (kbd "C-w") 'kill-buffer)
-(global-set-key (kbd "C-o") 'find-file)
-
-
-(global-set-key (kbd "C-x \"") 'split-window-below)
-(global-set-key (kbd "C-x %") 'split-window-right)
-(global-set-key (kbd "C-x -") 'split-window-below)
-(global-set-key (kbd "C-x _") 'split-window-right)
-
-(global-set-key (kbd "C-g")  'flycheck-list-errors)
-
-(global-visual-line-mode t)
-
-;; ;; move from half space buffers using shift and arrow keys
-;; ;; (windmove-default-keybindings)
-
-;; make mode
-(add-to-list 'auto-mode-alist '("\\makefile.*\\'" . makefile-mode))
-
-
-
-(load "~/.emacs.d/local")
-(load "~/.emacs.d/f90")
-(load "~/.emacs.d/bash")
-(if (eq major-mode 'python-mode)
-    (load "~/.emacs.d/python"))
-(load "~/.emacs.d/vasp-mode")
-(if (eq major-mode 'latex-mode)
-    (load "~/.emacs.d/latex.el"))
+;;; Additional Settings and Hooks
+(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(add-hook 'after-init-hook 'global-flycheck-mode)
+(setq make-backup-files nil)
 
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(conda-anaconda-home "/opt/intel/oneapi/intelpython/latest/condabin/")
- '(package-selected-packages '(web-server websocket)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
