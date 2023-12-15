@@ -4,15 +4,39 @@
 (& "C:\ProgramData\Anaconda3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
 #endregion
 
-# function source {
-#     if (Test-Path $PROFILE.AllUsersAllHosts) { . $PROFILE.AllUsersAllHosts }
-#     if (Test-Path $PROFILE.AllUsersCurrentHost) { . $PROFILE.AllUsersCurrentHost }
-#     if (Test-Path $PROFILE.CurrentUserAllHosts) { . $PROFILE.CurrentUserAllHosts }
-#     if (Test-Path $PROFILE.CurrentUserCurrentHost) { . $PROFILE.CurrentUserCurrentHost }
-# }
 $targetDir = Split-Path $PROFILE
 oh-my-posh init pwsh --config "$targetDir\ohp-theme.json" | Invoke-Expression
 Import-Module -Name Terminal-Icons 
+
+function ChnDir {
+    param(
+        [string]$Path
+    )
+
+    process {
+        # Resolve the full path
+        if ($Path.Length -eq 0) {
+            $Path = $HOME
+        }
+
+        $FullPath = Resolve-Path $Path
+
+
+        if ($FullPath -like "*.lnk") {
+            $shell = New-Object -COM WScript.Shell
+            $shortcut = $shell.CreateShortcut($FullPath)
+            if (Test-Path $shortcut.TargetPath) {
+                $Path = $shortcut.TargetPath
+            } else {
+                return
+            }
+        }
+
+        Set-Location -Path $Path
+    }
+}
+Set-Alias -Name cd -Value ChnDir -Option AllScope
+
 # function ConvertTo-RelativePath {
 #     param($Path)
 #     if ($Path.StartsWith($HOME)) {
