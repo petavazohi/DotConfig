@@ -62,6 +62,6 @@ if (!(Get-Module -ListAvailable -Name Terminal-Icons)) {
 } else {
     Write-Output "Terminal-Icons module is already installed."
 }
-
+oh-my-posh font install 0xProto
 . $PROFILE
 Write-Host "Do not forget to install fonts you can use 'oh-my-posh font install' in Admin PowerShell"
