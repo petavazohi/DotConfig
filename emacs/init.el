@@ -13,6 +13,9 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(use-package f
+  :ensure t)
+
 
 ;; Refresh package contents before installing
 (unless package-archive-contents
@@ -68,7 +71,7 @@
 
 ;;; User Information
 (setq user-full-name "Pedram Tavadze"
-      user-mail-address "petavazohi@mix.wvu.edu")
+      user-mail-address "petavazohi@gmail.com")
 
 ;;; Performance Tuning
 (setq gc-cons-threshold 50000000)
@@ -78,8 +81,12 @@
 (tool-bar-mode -1)
 (setq require-final-newline t)
 (delete-selection-mode t)
-(global-linum-mode t)
-(setq linum-format "%4d \u2502 ")
+;; (global-linum-mode t)
+;; (setq linum-format "%4d \u2502 ")
+;; (global-display-line-numbers-mode t)
+(if (>= emacs-major-version 29)
+    (global-display-line-numbers-mode t)
+  (global-linum-mode t))
 (load-theme 'material t)
 
 ;;; Editing Enhancements
@@ -109,9 +116,31 @@
     (comment-or-uncomment-region start end)))
 
 ;;; Keybindings
-(global-set-key (kbd "M-;") 'comment-or-uncomment-region-or-line)
+(global-set-key (kbd "C-x /") 'comment-or-uncomment-region-or-line)
 (global-set-key (kbd "<f5>") 'compile)
 (global-set-key (kbd "<f6>") 'recompile)
+
+(global-set-key (kbd "C-<left>")  'windmove-left)
+(global-set-key (kbd "C-<right>") 'windmove-right)
+(global-set-key (kbd "C-<up>")    'windmove-up)
+(global-set-key (kbd "C-<down>")  'windmove-down)
+
+(global-set-key (kbd "C-<prior>")  'beginning-of-buffer)
+(global-set-key (kbd "C-<next>") 'end-of-buffer)
+
+
+(global-set-key (kbd "C-a") 'mark-whole-buffer)
+
+(global-set-key (kbd "C-l") 'display-line-numbers-mode)
+(global-set-key (kbd "C-q") 'display-fill-column-indicator-mode)
+(global-set-key (kbd "C-w") 'kill-buffer)
+(global-set-key (kbd "C-o") 'find-file)
+;; (global-set-key (kbd "C-x \\\"") 'split-window-below)
+;; (global-set-key (kbd "C-x %") 'split-window-right)
+;; (global-set-key (kbd "C-x -") 'split-window-below)
+;; (global-set-key (kbd "C-x _") 'split-window-right)
+;; (global-set-key (kbd "C-g")  'flycheck-list-errors)
+
 ;; Add more keybindings as needed...
 
 ;;; Additional Settings and Hooks

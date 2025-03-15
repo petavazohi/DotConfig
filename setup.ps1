@@ -62,6 +62,22 @@ if (!(Get-Module -ListAvailable -Name Terminal-Icons)) {
 } else {
     Write-Output "Terminal-Icons module is already installed."
 }
-
+oh-my-posh font install 0xProto
 . $PROFILE
 Write-Host "Do not forget to install fonts you can use 'oh-my-posh font install' in Admin PowerShell"
+
+# Define the IPython startup path
+$startupPath = Join-Path $Env:USERPROFILE '.ipython\profile_default\startup'
+
+# Create the directory if it doesn't exist
+if (!(Test-Path $startupPath)) {
+    New-Item -ItemType Directory -Path $startupPath -Force | Out-Null
+    Write-Host "Created $startupPath"
+}
+
+# Define the source file path (adjust as needed if your script is elsewhere)
+$sourceFile = Join-Path (Get-Location) 'ipython\01-ipython.ipy'
+
+# Copy the file into the startup folder
+Copy-Item $sourceFile $startupPath -Force
+Write-Host "Copied 01-ipython.ipy to $startupPath"

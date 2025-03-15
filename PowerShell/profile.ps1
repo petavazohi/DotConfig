@@ -1,8 +1,22 @@
-
 #region conda initialize
-# !! Contents within this block are managed by 'conda init' !!
-(& "C:\ProgramData\Anaconda3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
+# Check for Anaconda or Miniconda installations
+$condaPathAnaconda = "C:\ProgramData\Anaconda3\Scripts\conda.exe"
+$condaPathMiniconda = "C:\ProgramData\miniconda3\Scripts\conda.exe"
+
+if (Test-Path $condaPathAnaconda) {
+    # Initialize Anaconda
+    & $condaPathAnaconda "shell.powershell" "hook" | Out-String | Invoke-Expression
+    Write-Host "Anaconda initialization complete."
+} elseif (Test-Path $condaPathMiniconda) {
+    # Initialize Miniconda
+    & $condaPathMiniconda "shell.powershell" "hook" | Out-String | Invoke-Expression
+    Write-Host "Miniconda initialization complete."
+} else {
+    # Skip initialization if neither exists
+    Write-Warning "Neither Anaconda nor Miniconda found. Skipping Conda initialization."
+}
 #endregion
+
 
 $targetDir = Split-Path $PROFILE
 oh-my-posh init pwsh --config "$targetDir\ohp-theme.json" | Invoke-Expression
