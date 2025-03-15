@@ -6,11 +6,15 @@
 # Disable CRTL+Z
 trap ' '20
 
-
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
+
 export base=$(pwd)
 
 head_node_hostname=$(hostname) # change the name of the hostname in .bashrc.local
@@ -63,7 +67,8 @@ if [ "$current_hostname" == "$head_node_hostname" ]; then
             echo "($commit)"
         fi
     }
-    if [ -x ~/.local/bin/oh-my-posh ]; then
+    # if [ -x ~/.local/bin/oh-my-posh ] || [ -x /home/linuxbrew/.linuxbrew/bin/oh-my-posh ]; then
+    if command -v oh-my-posh >/dev/null 2>&1; then
 	    eval "$(oh-my-posh init bash --config ~/.omp.json)"
     else
 	    export PS1="\[\e[31m\]\d\[\e[m\] \[\e[31m\]\@\[\e[m\]-[\[\e[36m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]]: \[\e[33m\]\w\[\e[m\] \[\$(git_color)\]\$(git_branch) \n\[\e[37m\]\\\$ >  "
@@ -87,3 +92,5 @@ export PATH="$HOME/local/ForensicFit/scripts/:$PATH"
 export PYTHONPATH="$HOME/local/PyChemia:$PYTHONPATH"
 export PYTHONPATH="$HOME/local/pyprocar:$PYTHONPATH"
 export PYTHONPATH="$HOME/local/scripts:$PYTHONPATH"
+
+
