@@ -90,7 +90,7 @@ trap 'echo -ne "${COLOR_CYAN}"' ERR
 export PATH="$HOME/local/scripts:$PATH"
 export PATH="$HOME/local/ForensicFit/scripts/:$PATH"
 export PYTHONPATH="$HOME/local/PyChemia:$PYTHONPATH"
-export PYTHONPATH="$HOME/local/pyprocar:$PYTHONPATH"
+# export PYTHONPATH="$HOME/local/pyprocar:$PYTHONPATH"
 export PYTHONPATH="$HOME/local/scripts:$PYTHONPATH"
 
 
