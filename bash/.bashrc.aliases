@@ -53,7 +53,6 @@ alias ga="git add ."
 alias gc="git commit -m"
 alias gpush="git push"
 
-
 # Computers aliases
 alias wvussh='ssh petavazohi@ssh.wvu.edu'
 alias thorny='ssh petavazohi@tf.hpc.wvu.edu'
@@ -71,6 +70,7 @@ alias vf='cd'
 alias tial='tail'
 alias vo='vi'
 alias ci='vi'
+
 # weather
 
 # Python
