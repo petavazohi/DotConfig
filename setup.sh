@@ -43,11 +43,12 @@ if [ ! -x ~/.local/bin/oh-my-posh ]; then
     curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin/
 fi
 
-ln -s ${base}/.omp.json .
+ln -s ${base}/kali.omp.json .omp.json
 
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DroidSansMono/DroidSansMNerdFont-Regular.otf
 
+cd $HOME
 ln -s ${base}/bash/.bashrc.aliases .
 ln -s ${base}/bash/.bashrc.functions .
 ln -s ${base}/bash/.git-completion.bash .
