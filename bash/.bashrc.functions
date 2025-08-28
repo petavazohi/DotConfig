@@ -173,19 +173,6 @@ up(){
 
 
 
-# github
-if [ -f ~/.git-completion.bash ]; then
-    . ~/.git-completion.bash
-fi
-
-
-gp ()
-{
-    git add .
-    git commit -m "$1"
-    git push
-}
-
 pyclean ()
 {
     find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete

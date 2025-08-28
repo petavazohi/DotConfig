@@ -36,6 +36,7 @@ alias src='source ~/.bashrc'
 alias q="qstat -u petavazohi"
 alias grep="grep --color=auto -n "
 alias qw='emacs -nw'
+alias emacs='emacs -nw'
 alias c='clear'
 alias cls='clear;ls'
 alias rem='rm *~'
@@ -54,9 +55,6 @@ alias gc="git commit -m"
 alias gpush="git push"
 
 # Computers aliases
-alias wvussh='ssh petavazohi@ssh.wvu.edu'
-alias thorny='ssh petavazohi@tf.hpc.wvu.edu'
-alias spruce='ssh petavazohi@spruce.hpc.wvu.edu'
 alias bridges="ssh ptvz@bridges.psc.xsede.org"
 alias stampede2="ssh ptvz@stampede2.tacc.utexas.edu"
 
