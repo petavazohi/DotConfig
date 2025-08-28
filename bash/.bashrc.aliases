@@ -34,7 +34,7 @@ alias l='ls -CF'                              #
 alias src='source ~/.bashrc'
 
 alias q="qstat -u petavazohi"
-alias grep="grep --color=auto"
+alias grep="grep --color=auto -n "
 alias qw='emacs -nw'
 alias c='clear'
 alias cls='clear;ls'
