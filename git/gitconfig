@@ -1,2 +1,9 @@
 [core]
     editor = emacs -nw
+[credential]
+	helper = store
+[user]
+	name = Pedram Tavadze
+	email = petavazohi@gmail.com
+[pull]
+	rebase = true
