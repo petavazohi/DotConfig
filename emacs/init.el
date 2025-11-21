@@ -116,7 +116,9 @@
     (comment-or-uncomment-region start end)))
 
 ;;; Keybindings
-(global-set-key (kbd "C-x /") 'comment-or-uncomment-region-or-line)
+;; for emacs C-/ is sent to C-_ so for C-/ to work we need to bind it with C-_
+(global-set-key (kbd "C-_") 'comment-or-uncomment-region-or-line)
+
 (global-set-key (kbd "<f5>") 'compile)
 (global-set-key (kbd "<f6>") 'recompile)
 
@@ -125,15 +127,16 @@
 (global-set-key (kbd "C-<up>")    'windmove-up)
 (global-set-key (kbd "C-<down>")  'windmove-down)
 
-(global-set-key (kbd "C-<prior>")  'beginning-of-buffer)
-(global-set-key (kbd "C-<next>") 'end-of-buffer)
+
+(global-set-key (kbd "C-<prior>") 'previous-buffer)
+(global-set-key (kbd "C-<next>") 'next-buffer)
 
 
 (global-set-key (kbd "C-a") 'mark-whole-buffer)
 
 (global-set-key (kbd "C-l") 'display-line-numbers-mode)
 (global-set-key (kbd "C-q") 'display-fill-column-indicator-mode)
-(global-set-key (kbd "C-w") 'kill-buffer)
+;; (global-set-key (kbd "C-w") 'kill-buffer)
 (global-set-key (kbd "C-o") 'find-file)
 ;; (global-set-key (kbd "C-x \\\"") 'split-window-below)
 ;; (global-set-key (kbd "C-x %") 'split-window-right)
